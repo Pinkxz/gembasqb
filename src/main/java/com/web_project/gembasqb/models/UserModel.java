@@ -63,8 +63,7 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel [email=" + email + ", password=" + password + ", whatsapp=" + whatsapp + ", nome=" + nome
-                + "]";
+        return "UserModel email = " + email + ", password = " + password + ", whatsapp = " + whatsapp + ", nome = " + nome;
     }
 
     

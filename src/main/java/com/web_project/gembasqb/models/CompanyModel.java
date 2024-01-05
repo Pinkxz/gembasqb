@@ -144,9 +144,8 @@ public class CompanyModel implements Serializable{
 
     @Override
     public String toString() {
-        return "CompanyModel [compNome=" + compNome + ", cep=" + cep + ", rua=" + rua + ", bairro=" + bairro
-                + ", numero=" + numero + ", complemento=" + complemento + ", cidade=" + cidade + ", estado=" + estado
-                + "]";
+        return "CompanyModel compNome = " + compNome + ", cep = " + cep + ", rua = " + rua + ", bairro = " + bairro
+                + ", numero = " + numero + ", complemento = " + complemento + ", cidade = " + cidade + ", estado = " + estado;
     }
 
 }
