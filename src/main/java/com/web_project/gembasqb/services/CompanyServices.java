@@ -6,8 +6,8 @@ import com.web_project.gembasqb.repositories.CompanyRepository;
 
 @Service
 public class CompanyServices {
+     
     
-   
     final CompanyRepository companyRepository;        
 
     public CompanyServices(CompanyRepository companyRepository){

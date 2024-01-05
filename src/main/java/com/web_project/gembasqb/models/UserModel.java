@@ -20,7 +20,6 @@ public class UserModel {
     @Column(nullable = false, unique = true, length = 30)
     private String nome;
     
-    
     public UserModel(String email, String password, double whatsapp, String nome) {
         
         this.setEmail(email);
