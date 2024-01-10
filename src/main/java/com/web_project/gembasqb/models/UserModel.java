@@ -28,6 +28,10 @@ public class UserModel {
         this.setNome(nome);
     }
 
+    public UserModel() { 
+        
+    }
+
     public String getEmail() {
         return email;
     }

@@ -70,6 +70,10 @@ public class CompanyModel implements Serializable{
     }
 
     
+    public CompanyModel() {
+        
+    }
+
     public UUID getId() {
         return id;
     }
