@@ -8,9 +8,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,7 +41,7 @@ public class UserController {
        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
    }
 
-      @GetMapping("/users/{id}")
+   @GetMapping("/users/{id}")
    public ResponseEntity<Object> getOneUser(@PathVariable(value="id") UUID id) {
       Optional<UserModel> user0 = userRepository.findById(id);
       if(user0.isEmpty()){
@@ -48,4 +50,25 @@ public class UserController {
       return ResponseEntity.status(HttpStatus.OK).body(user0.get());
    }
    
+   @DeleteMapping("/users/{id}")
+	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+		Optional<UserModel> userO = userRepository.findById(id);
+		if(userO.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+		}
+		userRepository.delete(userO.get());
+		return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully.");
+	}
+	
+	@PutMapping("/users/{id}")
+	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+													  @RequestBody @Valid UserRDto userRDto) {
+		Optional<UserModel> user0 = userRepository.findById(id);
+		if(user0.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+		}
+		var userModel = user0.get();
+		BeanUtils.copyProperties(userRDto, userModel);
+		return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(userModel));
+	}
 }

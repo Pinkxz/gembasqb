@@ -17,7 +17,9 @@ import com.web_project.gembasqb.repositories.CompanyRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -49,5 +51,27 @@ public class CompanyController {
       return ResponseEntity.status(HttpStatus.OK).body(company0.get());
    }
    
+   @DeleteMapping("/companys/{id}")
+	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+		Optional<CompanyModel> companyO = companyRepository.findById(id);
+		if(companyO.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
+		}
+		companyRepository.delete(companyO.get());
+		return ResponseEntity.status(HttpStatus.OK).body("Company deleted successfully.");
+	}
+	
+	@PutMapping("/companys/{id}")
+	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+													  @RequestBody @Valid CompanyRDto companyRDto) {
+		Optional<CompanyModel> companyO = companyRepository.findById(id);
+		if(companyO.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
+		}
+		var companyModel = companyO.get();
+		BeanUtils.copyProperties(companyRDto, companyModel);
+		return ResponseEntity.status(HttpStatus.OK).body(companyRepository.save(companyModel));
+	}
+
 
 }
