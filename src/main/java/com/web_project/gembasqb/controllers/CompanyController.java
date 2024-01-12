@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 import com.web_project.gembasqb.dtos.CompanyRDto;
 import com.web_project.gembasqb.models.CompanyModel;
 import com.web_project.gembasqb.repositories.CompanyRepository;
@@ -37,19 +40,27 @@ public class CompanyController {
        return ResponseEntity.status(HttpStatus.CREATED).body(companyRepository.save(companyModel));
    }
 
-   @GetMapping("/companys")
-   public ResponseEntity<List<CompanyModel>> getAlCompanys() {
-       return ResponseEntity.status(HttpStatus.OK).body(companyRepository.findAll());
-   }
-   
    @GetMapping("/companys/{id}")
-   public ResponseEntity<Object> getOneCompany(@PathVariable(value="id") UUID id) {
-      Optional<CompanyModel> company0 = companyRepository.findById(id);
-      if(company0.isEmpty()){
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not Found");
-      }
-      return ResponseEntity.status(HttpStatus.OK).body(company0.get());
-   }
+	public ResponseEntity<List<CompanyModel>> getAllCompanys(){
+		List<CompanyModel> companyList = companyRepository.findAll();
+		if(!companyList.isEmpty()) {
+			for(CompanyModel company : companyList) {
+				UUID id = company.getId();
+				company.add(linkTo(methodOn(CompanyController.class).getOneCompany(id)).withSelfRel());
+			}
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(companyList);
+	}
+
+	@GetMapping("/companys/{id}")
+	public ResponseEntity<Object> getOneCompany(@PathVariable(value="id") UUID id){
+		Optional<CompanyModel> companyO = companyRepository.findById(id);
+		if(companyO.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
+		}
+		companyO.get().add(linkTo(methodOn(CompanyController.class).getAllCompanys()).withRel("Company List"));
+		return ResponseEntity.status(HttpStatus.OK).body(companyO.get());
+	}
    
    @DeleteMapping("/companys/{id}")
 	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {

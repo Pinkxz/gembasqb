@@ -1,12 +1,24 @@
 package com.web_project.gembasqb.models;
 
+import java.io.Serializable;
+import java.util.UUID;
+
+import org.springframework.hateoas.RepresentationModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Users")
-public class UserModel {
+public class UserModel extends RepresentationModel<UserModel> implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idUser;
 
     @Column(nullable = false, unique = true, length = 30)
     private String email;
@@ -30,6 +42,14 @@ public class UserModel {
 
     public UserModel() { 
         
+    }
+
+    public UUID getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(UUID idUser) {
+        this.idUser = idUser;
     }
 
     public String getEmail() {
@@ -69,5 +89,6 @@ public class UserModel {
         return "UserModel email = " + email + ", password = " + password + ", whatsapp = " + whatsapp + ", nome = " + nome;
     }
 
+ 
     
 }

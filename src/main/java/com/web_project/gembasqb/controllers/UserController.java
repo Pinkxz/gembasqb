@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
+
 import com.web_project.gembasqb.dtos.UserRDto;
 import com.web_project.gembasqb.models.UserModel;
 import com.web_project.gembasqb.repositories.UserRepository;
@@ -36,19 +40,27 @@ public class UserController {
        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userModel));
    }
 
-   @GetMapping("/users")
-   public ResponseEntity<List<UserModel>> getAllUsers() {
-       return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
-   }
-
    @GetMapping("/users/{id}")
-   public ResponseEntity<Object> getOneUser(@PathVariable(value="id") UUID id) {
-      Optional<UserModel> user0 = userRepository.findById(id);
-      if(user0.isEmpty()){
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not Found");
-      }
-      return ResponseEntity.status(HttpStatus.OK).body(user0.get());
-   }
+	public ResponseEntity<List<UserModel>> getAllUsers(){
+		List<UserModel> userList = userRepository.findAll();
+		if(!userList.isEmpty()) {
+			for(UserModel user : userList) {
+				UUID id = user.getIdUser();
+				user.add(linkTo(methodOn(CompanyController.class).getOneCompany(id)).withSelfRel());
+			}
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(userList);
+	}
+
+	@GetMapping("/users/{id}")
+	public ResponseEntity<Object> getOneUser(@PathVariable(value="id") UUID id){
+		Optional<UserModel> userO = userRepository.findById(id);
+		if(userO.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
+		}
+		userO.get().add(linkTo(methodOn(UserController.class).getAllUsers()).withRel("Company List"));
+		return ResponseEntity.status(HttpStatus.OK).body(userO.get());
+	}
    
    @DeleteMapping("/users/{id}")
 	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
