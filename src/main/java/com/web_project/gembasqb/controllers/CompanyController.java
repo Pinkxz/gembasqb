@@ -57,7 +57,7 @@ public class CompanyController {
 		Optional<CompanyModel> companyO = companyRepository.findById(id);
 		if(companyO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
-		}
+		} 
 		companyO.get().add(linkTo(methodOn(CompanyController.class).getAllCompanys()).withRel("Company List"));
 		return ResponseEntity.status(HttpStatus.OK).body(companyO.get());
 	}
@@ -83,6 +83,5 @@ public class CompanyController {
 		BeanUtils.copyProperties(companyRDto, companyModel);
 		return ResponseEntity.status(HttpStatus.OK).body(companyRepository.save(companyModel));
 	}
-
 
 }
