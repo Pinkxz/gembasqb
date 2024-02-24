@@ -22,22 +22,22 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idProduto;
 
-    @Column(nullable = false, unique = true, length = 25)
+    @Column(nullable = false, unique = false, length = 25)
     private String nomeProduto;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = true, unique = false, length = 50)
     private String  descricaoProduto;
 
-    @Column(nullable = false, unique = true, length = 5)
+    @Column(nullable = false, unique = false, length = 5)
     private int precoProduto;
 
-    @Column(nullable = false, unique = true, length = 4)
+    @Column(nullable = false, unique = false, length = 4)
     private int pesoProduto;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = true, unique = false, length = 20)
     private String categoriaProduto;
 
-    @Column(nullable = false, unique = true, length = 10)
+    @Column(nullable = false, unique = false, length = 10)
     private String statusProduto;
 
     private String fotoProduto;

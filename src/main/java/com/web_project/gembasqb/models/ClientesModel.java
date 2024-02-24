@@ -22,13 +22,13 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
 
-     @Column(nullable = false, unique = true, length = 20)
+     @Column(nullable = false, unique = false, length = 20)
     private String nomeCliente;
 
     @Column(nullable = false, unique = true, length = 25)
     private String emailCliente;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String dataCadastro;
 
     @Column(nullable = true, unique = true)
@@ -37,7 +37,7 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     @Column(nullable = true, unique = true, length = 20)
     private double whatsapp;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String statusCliente;
 
 
