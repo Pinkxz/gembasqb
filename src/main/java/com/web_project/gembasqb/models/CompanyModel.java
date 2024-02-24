@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Company_Instances")
+@Table(name = "Companys")
 public class CompanyModel extends RepresentationModel<CompanyModel> implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -43,6 +43,10 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
 
     @Column(nullable = false, unique = false, length = 2)
     private String estado;
+
+    
+    public CompanyModel() {
+    }
 
     public CompanyModel(UUID id, String compNome, String tipoNegocio, double cep, String rua, String bairro,
             int numeroEnd, String cidade, String estado) {
