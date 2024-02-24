@@ -1,16 +1,25 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Servicos")
 public class ServicosModel  extends RepresentationModel<ServicosModel> implements Serializable {
     
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idServico;
 
     @Column(nullable = false, unique = true, length = 20)
     private String nomeServico;

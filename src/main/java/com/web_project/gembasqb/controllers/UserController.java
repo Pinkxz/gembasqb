@@ -40,7 +40,7 @@ public class UserController {
        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userModel));
    }
 
-   @GetMapping("/users/{id}")
+   @GetMapping("/users/")
 	public ResponseEntity<List<UserModel>> getAllUsers(){
 		List<UserModel> userList = userRepository.findAll();
 		if(!userList.isEmpty()) {

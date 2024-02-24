@@ -23,13 +23,13 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @Column(nullable = false, unique = true, length = 30)
     private String email;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String password;
 
     @Column(nullable = false, unique = true, length = 11)
     private double numero;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = false, length = 30)
     private String nome;
     
     public UserModel(String email, String password, double numero, String nome) {

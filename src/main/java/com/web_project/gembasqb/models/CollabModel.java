@@ -1,14 +1,22 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 public class CollabModel  extends RepresentationModel<CollabModel> implements Serializable {
     
         
+        @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idCollabUuid;
+
      @Column(nullable = false, unique = true, length = 20)
     private String nomeCollab;
 

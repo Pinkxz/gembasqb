@@ -40,7 +40,7 @@ public class CompanyController {
        return ResponseEntity.status(HttpStatus.CREATED).body(companyRepository.save(companyModel));
    }
 
-   @GetMapping("/companys/{id}")
+   @GetMapping("/companys/")
 	public ResponseEntity<List<CompanyModel>> getAllCompanys(){
 		List<CompanyModel> companyList = companyRepository.findAll();
 		if(!companyList.isEmpty()) {
