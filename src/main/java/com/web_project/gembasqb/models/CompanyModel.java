@@ -23,6 +23,9 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = true, length = 30)
     private String compNome;
 
+    @Column(nullable = false, unique = true, length = 30)
+    private String tipoNegocio;
+
     @Column(nullable = true, unique = false, length = 8 )
     private double cep;
 
@@ -33,46 +36,29 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     private String bairro;
 
     @Column(nullable = false, unique = false, length = 4)
-    private int numero;
-
-    @Column(nullable = false, unique = false, length = 30)
-    private String complemento;
+    private int numeroEnd;
 
     @Column(nullable = false, unique = false, length = 20)
     private String cidade;
 
     @Column(nullable = false, unique = false, length = 2)
     private String estado;
-    
-       public CompanyModel(UUID id, String compNome, String rua, String bairro, int numero, String complemento,
-            String cidade, String estado) {
-        this.setId(id);
-        this.setCompNome(compNome);
-        this.cep = 0;
-        this.setRua(rua);
-        this.setBairro(bairro);
-        this.setNumero(numero);
-        this.setComplemento(complemento);
-        this.setCidade(cidade);
-        this.setEstado(estado);
-    }
 
-    public CompanyModel(UUID id, String compNome, double cep, String rua, String bairro, int numero, String complemento,
-            String cidade, String estado) {
+    public CompanyModel(UUID id, String compNome, String tipoNegocio, double cep, String rua, String bairro,
+            int numeroEnd, String cidade, String estado) {
         this.setId(id);
         this.setCompNome(compNome);
+        this.setTipoNegocio(tipoNegocio);
         this.setCep(cep);
         this.setRua(rua);
         this.setBairro(bairro);
-        this.setNumero(numero);
-        this.setComplemento(complemento);
+        this.setNumeroEnd(numeroEnd);
         this.setCidade(cidade);
         this.setEstado(estado);
     }
 
-    
-    public CompanyModel() {
-        
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     public UUID getId() {
@@ -89,6 +75,14 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
 
     public void setCompNome(String compNome) {
         this.compNome = compNome;
+    }
+
+    public String getTipoNegocio() {
+        return tipoNegocio;
+    }
+
+    public void setTipoNegocio(String tipoNegocio) {
+        this.tipoNegocio = tipoNegocio;
     }
 
     public double getCep() {
@@ -115,20 +109,12 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
         this.bairro = bairro;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroEnd() {
+        return numeroEnd;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    public void setNumeroEnd(int numeroEnd) {
+        this.numeroEnd = numeroEnd;
     }
 
     public String getCidade() {
@@ -149,8 +135,10 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
 
     @Override
     public String toString() {
-        return "CompanyModel compNome = " + compNome + ", cep = " + cep + ", rua = " + rua + ", bairro = " + bairro
-                + ", numero = " + numero + ", complemento = " + complemento + ", cidade = " + cidade + ", estado = " + estado;
+        return "CompanyModel [id=" + id + ", compNome=" + compNome + ", tipoNegocio=" + tipoNegocio + ", cep=" + cep
+                + ", rua=" + rua + ", bairro=" + bairro + ", numeroEnd=" + numeroEnd + ", cidade=" + cidade
+                + ", estado=" + estado + "]";
     }
 
 }
+    

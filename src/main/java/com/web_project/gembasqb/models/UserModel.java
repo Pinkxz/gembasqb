@@ -27,16 +27,16 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private String password;
 
     @Column(nullable = false, unique = true, length = 11)
-    private double whatsapp;
+    private double numero;
 
     @Column(nullable = false, unique = true, length = 30)
     private String nome;
     
-    public UserModel(String email, String password, double whatsapp, String nome) {
+    public UserModel(String email, String password, double numero, String nome) {
         
         this.setEmail(email);
         this.setPassword(password);
-        this.setWhatsapp(whatsapp);
+        this.setNumero(numero);
         this.setNome(nome);
     }
 
@@ -68,12 +68,12 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.password = password;
     }
 
-    public double getWhatsapp() {
-        return whatsapp;
+    public double getNumero() {
+        return numero;
     }
 
-    public void setWhatsapp(double whatsapp) {
-        this.whatsapp = whatsapp;
+    public void setNumero(double numero) {
+        this.numero = numero;
     }
 
     public String getNome() {
@@ -86,7 +86,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     @Override
     public String toString() {
-        return "UserModel email = " + email + ", password = " + password + ", whatsapp = " + whatsapp + ", nome = " + nome;
+        return "UserModel email = " + email + ", password = " + password + ", whatsapp = " + numero + ", nome = " + nome;
     }
 
  
