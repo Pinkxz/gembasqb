@@ -20,6 +20,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     private String nomeServico;
 
     @Column(nullable = false, unique = true, length = 20)
+    private String descricao;
+
+    @Column(nullable = false, unique = true, length = 20)
     private String categoria;
 
     @Column(nullable = false, unique = false, length = 7)
@@ -31,12 +34,38 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     @Column(nullable = false, unique = true, length = 20)
     private String status;
 
+    @Column(nullable = false, unique = true, length = 20)
+    private String imagem;
+
+    @Column(nullable = false, unique = true, length = 20)
+    private int comissao;
+
+    @Column(nullable = false, unique = true, length = 20)
+    private String fidelidade;
+
+    
+    public ServicosModel() {
+    }
+
     public ServicosModel(String nomeServico, String categoria, int preco, float tempo, String status) {
         this.setNomeServico(nomeServico);
         this.setCategoria(categoria);
         this.setPreco(preco);
         this.setTempo(tempo);
         this.setStatus(status);
+    }
+
+    public ServicosModel(String nomeServico, String descricao, String categoria, int preco, float tempo, String status,
+            String imagem, int comissao, String fidelidade) {
+        this.setNomeServico(nomeServico);
+        this.setCategoria(categoria);
+        this.setDescricao(descricao);
+        this.setPreco(preco);
+        this.setTempo(tempo);
+        this.setStatus(status);
+        this.setImagem(imagem);
+        this.setComissao(comissao);
+        this.setFidelidade(fidelidade);
     }
 
     public String getNomeServico() {
@@ -77,6 +106,39 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public int getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(int comissao) {
+        this.comissao = comissao;
+    }
+
+    public String getFidelidade() {
+        return fidelidade;
+    }
+
+    public void setFidelidade(String fidelidade) {
+        this.fidelidade = fidelidade;
     }
 
     @Override
