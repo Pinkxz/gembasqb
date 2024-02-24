@@ -6,10 +6,6 @@ import org.springframework.hateoas.RepresentationModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-
-import org.springframework.hateoas.RepresentationModel;
-
 
 @Entity
 @Table(name = "Servicos")

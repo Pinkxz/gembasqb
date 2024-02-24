@@ -2,7 +2,6 @@ package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
 
-import org.hibernate.validator.constraints.EAN;
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
