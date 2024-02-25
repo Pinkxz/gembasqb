@@ -31,6 +31,9 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     @Column(nullable = false, unique = true, length = 20)
     private String total;
 
+    @Column(nullable = false, unique = false, length = 20)
+    private String dataInicio;
+
     public ComandaModel(int id, String cliente, String servicos, String profissional, String status, String total) {
         this.setId(id);
         this.setCliente(cliente);
@@ -38,6 +41,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
         this.setProfissional(profissional);
         this.setStatus(status);
         this.setTotal(total);
+        this.setDataInicio(dataInicio);
     }
 
     public int getId() {
@@ -87,11 +91,21 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     public void setTotal(String total) {
         this.total = total;
     }
+    
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+  
+
 
     @Override
     public String toString() {
         return "ComandaModel [id=" + id + ", cliente=" + cliente + ", servicos=" + servicos + ", profissional="
-                + profissional + ", status=" + status + ", total=" + total + "]";
+                + profissional + ", status=" + status + ", total=" + total + "dataInicio" + dataInicio;
     }
-  
+
 }
