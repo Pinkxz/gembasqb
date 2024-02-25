@@ -46,7 +46,7 @@ public class UserController {
 		if(!userList.isEmpty()) {
 			for(UserModel user : userList) {
 				UUID id = user.getIdUser();
-				user.add(linkTo(methodOn(CompanyController.class).getOneCompany(id)).withSelfRel());
+				user.add(linkTo(methodOn(UserController.class).getOneUser(id)).withSelfRel());
 			}
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(userList);
@@ -56,9 +56,9 @@ public class UserController {
 	public ResponseEntity<Object> getOneUser(@PathVariable(value="id") UUID id){
 		Optional<UserModel> userO = userRepository.findById(id);
 		if(userO.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
 		}
-		userO.get().add(linkTo(methodOn(UserController.class).getAllUsers()).withRel("Company List"));
+		userO.get().add(linkTo(methodOn(UserController.class).getAllUsers()).withRel("User List"));
 		return ResponseEntity.status(HttpStatus.OK).body(userO.get());
 	}
    

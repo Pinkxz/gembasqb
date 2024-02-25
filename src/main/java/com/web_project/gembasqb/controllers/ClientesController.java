@@ -40,7 +40,7 @@ public class ClientesController {
        return ResponseEntity.status(HttpStatus.CREATED).body(clientesRepository.save(clientesModel));
    }
 
-   @GetMapping("/c/")
+   @GetMapping("/clientes/")
 	public ResponseEntity<List<ClientesModel>> getAllClientes(){
 		List<ClientesModel> clientesList = clientesRepository.findAll();
 		if(!clientesList.isEmpty()) {
