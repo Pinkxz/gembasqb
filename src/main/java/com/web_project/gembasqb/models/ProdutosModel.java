@@ -59,6 +59,15 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     }
 
 
+    public UUID getIdProduto() {
+        return idProduto;
+    }
+
+
+    public void setIdProduto(UUID idProduto) {
+        this.idProduto = idProduto;
+    }  
+
     public String getNomeProduto() {
         return nomeProduto;
     }
@@ -134,7 +143,7 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
         return "ProdutosModel [nomeProduto=" + nomeProduto + ", descricaoProduto=" + descricaoProduto
                 + ", precoProduto=" + precoProduto + ", pesoProduto=" + pesoProduto + ", categoriaProduto="
                 + categoriaProduto + ", statusProduto=" + statusProduto + ", fotoProduto=" + fotoProduto + "]";
-    }  
+    }
 
     
 }

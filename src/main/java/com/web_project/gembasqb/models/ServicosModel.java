@@ -73,6 +73,15 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
         this.setFidelidade(fidelidade);
     }
 
+    public UUID getIdServico() {
+        return idServico;
+    }
+
+    public void setIdServico(UUID idServico) {
+        this.idServico = idServico;
+    }
+
+
     public String getNomeServico() {
         return nomeServico;
     }

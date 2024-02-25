@@ -61,6 +61,15 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
         this.foto = foto;
     }
 
+    public UUID getIdCollabUuid() {
+        return idCollabUuid;
+    }
+
+
+    public void setIdCollabUuid(UUID idCollabUuid) {
+        this.idCollabUuid = idCollabUuid;
+    }
+
 
     public String getNomeCollab() {
         return nomeCollab;
@@ -149,5 +158,5 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
                 + ", dataPagamento=" + dataPagamento + ", foto=" + foto + "]";
     }
 
-    
+
 }

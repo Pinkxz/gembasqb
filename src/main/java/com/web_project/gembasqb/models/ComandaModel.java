@@ -53,6 +53,15 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
         this.setDataInicio(dataInicio);
     }
 
+    public UUID getIdComanda() {
+        return idComanda;
+    }
+
+
+    public void setIdComanda(UUID idComanda) {
+        this.idComanda = idComanda;
+    }
+
     public String getCliente() {
         return cliente;
     }
@@ -109,4 +118,8 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
                 + profissional + ", status=" + status + ", total=" + total + "dataInicio" + dataInicio;
     }
 
+
+ 
+
 }
+
