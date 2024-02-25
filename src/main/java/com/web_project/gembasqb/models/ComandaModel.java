@@ -1,10 +1,14 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -13,8 +17,8 @@ import jakarta.persistence.Table;
 public class ComandaModel extends RepresentationModel<ComandaModel> implements Serializable {
     
     @Id
-    @Column(nullable = false, unique = true, length = 5)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idComanda;
 
     @Column(nullable = false, unique = true, length = 20)
     private String cliente;
@@ -34,22 +38,19 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     @Column(nullable = false, unique = false, length = 20)
     private String dataInicio;
 
-    public ComandaModel(int id, String cliente, String servicos, String profissional, String status, String total) {
-        this.setId(id);
+
+    
+    public ComandaModel() {
+    }
+
+
+    public ComandaModel(String cliente, String servicos, String profissional, String status, String total) {
         this.setCliente(cliente);
         this.setServicos(servicos);
         this.setProfissional(profissional);
         this.setStatus(status);
         this.setTotal(total);
         this.setDataInicio(dataInicio);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCliente() {
@@ -104,7 +105,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
 
     @Override
     public String toString() {
-        return "ComandaModel [id=" + id + ", cliente=" + cliente + ", servicos=" + servicos + ", profissional="
+        return "ComandaModel " + ", cliente=" + cliente + ", servicos=" + servicos + ", profissional="
                 + profissional + ", status=" + status + ", total=" + total + "dataInicio" + dataInicio;
     }
 
