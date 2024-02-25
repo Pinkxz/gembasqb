@@ -21,13 +21,13 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idServico;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String nomeServico;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String descricao;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String categoria;
 
     @Column(nullable = false, unique = false, length = 7)
@@ -36,16 +36,16 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     @Column(nullable = false, unique = false, length = 4)
     private float tempo;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String status;
 
     @Column(nullable = false, unique = true, length = 20)
     private String imagem;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 4)
     private int comissao;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = true, unique = false, length = 20)
     private String fidelidade;
 
     

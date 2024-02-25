@@ -23,7 +23,7 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = true, length = 30)
     private String compNome;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = false, length = 30)
     private String tipoNegocio;
 
     @Column(nullable = true, unique = false, length = 8 )
@@ -41,7 +41,7 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = false, length = 20)
     private String cidade;
 
-    @Column(nullable = false, unique = false, length = 2)
+    @Column(nullable = false, unique = false, length = 10)
     private String estado;
 
     
