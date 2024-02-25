@@ -15,30 +15,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Comandas")
 public class ComandaModel extends RepresentationModel<ComandaModel> implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idComanda;
+    private static final long serialVersionUID = 1L;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String cliente;
 
-    @Column(nullable = false, unique = true, length = 40)
+    @Column(nullable = false, unique = false, length = 40)
     private String servicos;
     
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String profissional;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String status;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String total;
 
     @Column(nullable = false, unique = false, length = 20)
     private String dataInicio;
-
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idComanda;
     
     public ComandaModel() {
     }

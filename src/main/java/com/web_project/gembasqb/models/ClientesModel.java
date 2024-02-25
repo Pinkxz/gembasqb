@@ -16,9 +16,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Clientes")
 public class ClientesModel extends RepresentationModel<ClientesModel> implements Serializable {
-    
+    private static final long serialVersionUID = 1L;
 
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
 

@@ -15,9 +15,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Colaboradores")
 public class CollabModel  extends RepresentationModel<CollabModel> implements Serializable {
-    
+    private static final long serialVersionUID = 1L;
         
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCollabUuid;
 
