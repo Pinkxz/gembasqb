@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.web_project.gembasqb.models.ProdutosModel;
 
 @Repository
-public interface ProdutosRepositoy extends JpaRepository<ProdutosModel, UUID>{
+public interface ProdutosRepository extends JpaRepository<ProdutosModel, UUID>{
     
 }

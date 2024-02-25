@@ -2,13 +2,13 @@ package com.web_project.gembasqb.services;
 
 import org.springframework.stereotype.Service;
 
-import com.web_project.gembasqb.repositories.ProdutosRepositoy;
+import com.web_project.gembasqb.repositories.ProdutosRepository;
 
 @Service
 public class ProdutosServices {
-    final ProdutosRepositoy produtosRepositoy;
+    final ProdutosRepository produtosRepositoy;
 
-    public ProdutosServices(ProdutosRepositoy produtosRepositoy) {
+    public ProdutosServices(ProdutosRepository produtosRepositoy) {
         this.produtosRepositoy = produtosRepositoy;
     }
 
