@@ -59,7 +59,18 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
         this.setFoto(foto);
     }
 
+     
+    
+    public UUID getIdCliente() {
+        return idCliente;
+    }
 
+
+    public void setIdCliente(UUID idCliente) {
+        this.idCliente = idCliente;
+    }
+
+     
     public String getNomeCliente() {
         return nomeCliente;
     }
@@ -137,6 +148,5 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
                 + ", foto=" + foto + "]";
     }
 
-    
 
 }
