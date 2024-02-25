@@ -63,7 +63,7 @@ public class UserController {
 	}
    
    @DeleteMapping("/users/{id}")
-	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+	public ResponseEntity<Object> deleteUser(@PathVariable(value="id") UUID id) {
 		Optional<UserModel> userO = userRepository.findById(id);
 		if(userO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
@@ -73,7 +73,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/users/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateUser(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid UserRDto userRDto) {
 		Optional<UserModel> user0 = userRepository.findById(id);
 		if(user0.isEmpty()) {

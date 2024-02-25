@@ -40,7 +40,7 @@ public class ProdutosController {
        return ResponseEntity.status(HttpStatus.CREATED).body(produtosRepository.save(produtosModel));
    }
 
-   @GetMapping("/colaboradores/")
+   @GetMapping("/produtos/")
 	public ResponseEntity<List<ProdutosModel>> getAllProdutos(){
 		List<ProdutosModel> produtosList = produtosRepository.findAll();
 		if(!produtosList.isEmpty()) {
@@ -52,7 +52,7 @@ public class ProdutosController {
 		return ResponseEntity.status(HttpStatus.OK).body(produtosList);
 	}
 
-	@GetMapping("/colaboradores/{id}")
+	@GetMapping("/produtos/{id}")
 	public ResponseEntity<Object> getOneProduto(@PathVariable(value="id") UUID id){
 		Optional<ProdutosModel> produtosO = produtosRepository.findById(id);
 		if(produtosO.isEmpty()) {
@@ -62,8 +62,8 @@ public class ProdutosController {
 		return ResponseEntity.status(HttpStatus.OK).body(produtosO.get());
 	}
    
-   @DeleteMapping("/colaboradores/{id}")
-	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+   @DeleteMapping("/produtos/{id}")
+	public ResponseEntity<Object> deleteProduto(@PathVariable(value="id") UUID id) {
 		Optional<ProdutosModel> produtosO = produtosRepository.findById(id);
 		if(produtosO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto not found.");
@@ -72,8 +72,8 @@ public class ProdutosController {
 		return ResponseEntity.status(HttpStatus.OK).body("Produto deleted successfully.");
 	}
 	
-	@PutMapping("/colaboradores/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+	@PutMapping("/produtos/{id}")
+	public ResponseEntity<Object> updateProduto(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid ProdutosRDto produtosRDto) {
 		Optional<ProdutosModel> produtosO = produtosRepository.findById(id);
 		if(produtosO.isEmpty()) {

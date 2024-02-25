@@ -63,7 +63,7 @@ public class CollabController {
 	}
    
    @DeleteMapping("/colaboradores/{id}")
-	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+	public ResponseEntity<Object> deleteCollab(@PathVariable(value="id") UUID id) {
 		Optional<CollabModel> collabO = collabRepository.findById(id);
 		if(collabO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Collab not found.");
@@ -73,7 +73,7 @@ public class CollabController {
 	}
 	
 	@PutMapping("/colaboradores/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateCollab(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid CollabRDto collabRDto) {
 		Optional<CollabModel> collab0 = collabRepository.findById(id);
 		if(collab0.isEmpty()) {

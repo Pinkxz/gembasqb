@@ -63,7 +63,7 @@ public class CompanyController {
 	}
    
    @DeleteMapping("/companys/{id}")
-	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+	public ResponseEntity<Object> deleteCompany(@PathVariable(value="id") UUID id) {
 		Optional<CompanyModel> companyO = companyRepository.findById(id);
 		if(companyO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Company not found.");
@@ -73,7 +73,7 @@ public class CompanyController {
 	}
 	
 	@PutMapping("/companys/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateComapany(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid CompanyRDto companyRDto) {
 		Optional<CompanyModel> companyO = companyRepository.findById(id);
 		if(companyO.isEmpty()) {

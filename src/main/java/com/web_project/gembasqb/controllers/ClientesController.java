@@ -63,7 +63,7 @@ public class ClientesController {
 	}
    
    @DeleteMapping("/clientes/{id}")
-	public ResponseEntity<Object> deleteProduct(@PathVariable(value="id") UUID id) {
+	public ResponseEntity<Object> deleteCliente(@PathVariable(value="id") UUID id) {
 		Optional<ClientesModel> clienteO = clientesRepository.findById(id);
 		if(clienteO.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente not found.");
@@ -73,7 +73,7 @@ public class ClientesController {
 	}
 	
 	@PutMapping("/clientes/{id}")
-	public ResponseEntity<Object> updateProduct(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateCliente(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid ClientesRDto clientesRDto) {
 		Optional<ClientesModel> clientesO = clientesRepository.findById(id);
 		if(clientesO.isEmpty()) {
