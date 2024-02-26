@@ -31,7 +31,7 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     private String categoria;
 
     @Column(nullable = false, unique = false, length = 7)
-    private int preco;
+    private float preco;
 
     @Column(nullable = false, unique = false, length = 4)
     private float tempo;
@@ -52,7 +52,7 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     public ServicosModel() {
     }
 
-    public ServicosModel(String nomeServico, String categoria, int preco, float tempo, String status) {
+    public ServicosModel(String nomeServico, String categoria, float preco, float tempo, String status) {
         this.setNomeServico(nomeServico);
         this.setCategoria(categoria);
         this.setPreco(preco);
@@ -60,7 +60,7 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
         this.setStatus(status);
     }
 
-    public ServicosModel(String nomeServico, String descricao, String categoria, int preco, float tempo, String status,
+    public ServicosModel(String nomeServico, String descricao, String categoria, float preco, float tempo, String status,
             String imagem, int comissao, String fidelidade) {
         this.setNomeServico(nomeServico);
         this.setCategoria(categoria);
@@ -98,11 +98,11 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
         this.categoria = categoria;
     }
 
-    public int getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(int preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 
