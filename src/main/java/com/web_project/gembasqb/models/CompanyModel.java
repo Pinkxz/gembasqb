@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 import org.springframework.hateoas.RepresentationModel;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +27,8 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = false, length = 30)
     private String tipoNegocio;
 
-    @Column(nullable = true, unique = false, length = 8 )
-    private double cep;
+    @Column(nullable = true, unique = false, length = 10 )
+    private String cep;
 
     @Column(nullable = false, unique = false, length = 20)
     private String rua;
@@ -44,14 +45,14 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = false, length = 10)
     private String estado;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = true ,unique = false, length = 20)
     private String tamanhoEmpresa;
     
     public CompanyModel() {
     }
 
-    public CompanyModel(UUID id, String compNome, String tipoNegocio, double cep, String rua, String bairro,
-            int numeroEnd, String cidade, String estado) {
+    public CompanyModel(UUID id, String compNome, String tipoNegocio, String cep, String rua, String bairro,
+            int numeroEnd, String cidade, String estado, String tamanhoEmpresa) {
         this.setId(id);
         this.setCompNome(compNome);
         this.setTipoNegocio(tipoNegocio);
@@ -92,11 +93,11 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
         this.tipoNegocio = tipoNegocio;
     }
 
-    public double getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(double cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
