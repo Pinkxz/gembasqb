@@ -44,6 +44,8 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     @Column(nullable = false, unique = false, length = 10)
     private String estado;
 
+    @Column(nullable = false, unique = false, length = 20)
+    private String tamanhoEmpresa;
     
     public CompanyModel() {
     }
@@ -59,6 +61,7 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
         this.setNumeroEnd(numeroEnd);
         this.setCidade(cidade);
         this.setEstado(estado);
+        this.setTamanhoEmpresa(tamanhoEmpresa);
     }
 
     public static long getSerialversionuid() {
@@ -136,6 +139,15 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String getTamanhoEmpresa() {
+        return tamanhoEmpresa;
+    }
+
+    public void setTamanhoEmpresa(String tamanhoEmpresa) {
+        this.tamanhoEmpresa = tamanhoEmpresa;
+    }
+
 
     @Override
     public String toString() {
