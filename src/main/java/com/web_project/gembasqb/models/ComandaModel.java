@@ -17,13 +17,13 @@ import jakarta.persistence.Table;
 public class ComandaModel extends RepresentationModel<ComandaModel> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = false, length = 30)
     private String cliente;
 
-    @Column(nullable = false, unique = false, length = 40)
+    @Column(nullable = false, unique = false, length = 100)
     private String servicos;
     
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = false, length = 30)
     private String profissional;
 
     @Column(nullable = false, unique = false, length = 20)

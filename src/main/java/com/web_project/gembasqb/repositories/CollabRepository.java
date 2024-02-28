@@ -10,6 +10,4 @@ import com.web_project.gembasqb.models.CollabModel;
 @Repository
 public interface CollabRepository extends JpaRepository<CollabModel, UUID>{
 
-    
-
 }

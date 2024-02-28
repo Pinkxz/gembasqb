@@ -21,13 +21,13 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCollabUuid;
 
-     @Column(nullable = false, unique = true, length = 20)
+     @Column(nullable = false, unique = false, length = 25)
     private String nomeCollab;
 
     @Column(nullable = false, unique = true, length = 25)
     private String emailCollab;
 
-    @Column(nullable = true, unique = true, length = 20)
+    @Column(nullable = true, unique = false, length = 20)
     private String dataCadastro;
 
     @Column(nullable = true, unique = true)
@@ -36,7 +36,7 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     @Column(nullable = true, unique = true, length = 20)
     private double whatsapp;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = false, length = 20)
     private String statusCollab;
 
     @Column(nullable = false, unique = false)
