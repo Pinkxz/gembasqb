@@ -25,16 +25,16 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     @Column(nullable = false, unique = false, length = 25)
     private String nomeProduto;
 
-    @Column(nullable = true, unique = false, length = 50)
+    @Column(nullable = true, unique = false, length = 100)
     private String  descricaoProduto;
 
+    @Column(nullable = false, unique = false, length = 7)
+    private float precoProduto;
+
     @Column(nullable = false, unique = false, length = 5)
-    private int precoProduto;
+    private float pesoProduto;
 
-    @Column(nullable = false, unique = false, length = 4)
-    private int pesoProduto;
-
-    @Column(nullable = true, unique = false, length = 20)
+    @Column(nullable = true, unique = false, length = 25)
     private String categoriaProduto;
 
     @Column(nullable = false, unique = false, length = 10)
@@ -47,7 +47,7 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     }
 
 
-    public ProdutosModel(String nomeProduto, String descricaoProduto, int precoProduto, int pesoProduto,
+    public ProdutosModel(String nomeProduto, String descricaoProduto, float precoProduto, float pesoProduto,
             String categoriaProduto, String statusProduto, String fotoProduto) {
         this.setNomeProduto(nomeProduto);
         this.setDescricaoProduto(descricaoProduto);
@@ -88,22 +88,22 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     }
 
 
-    public int getPrecoProduto() {
+    public float getPrecoProduto() {
         return precoProduto;
     }
 
 
-    public void setPrecoProduto(int precoProduto) {
+    public void setPrecoProduto(float precoProduto) {
         this.precoProduto = precoProduto;
     }
 
 
-    public int getPesoProduto() {
+    public float getPesoProduto() {
         return pesoProduto;
     }
 
 
-    public void setPesoProduto(int pesoProduto) {
+    public void setPesoProduto(float pesoProduto) {
         this.pesoProduto = pesoProduto;
     }
 
@@ -133,7 +133,7 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     }
 
 
-    public void setFotoProduto(String fotoProduto) {
+    public void setFotoProduto(String fotoProduto) {    
         this.fotoProduto = fotoProduto;
     }
 
