@@ -44,6 +44,7 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     @Column(nullable = false, unique = false)
     private String dataPagamento;
 
+    @Column(length = 10000)
     private String foto;
 
 

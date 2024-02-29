@@ -42,6 +42,7 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     @Column(nullable = false, unique = false, length = 10)
     private String statusProduto;
 
+    @Column(length = 10000)
     private String fotoProduto;
 
     @ManyToOne
@@ -51,7 +52,7 @@ public class ProdutosModel extends RepresentationModel<ProdutosModel> implements
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
-    
+
     public ProdutosModel() {
     }
 

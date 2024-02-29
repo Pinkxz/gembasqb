@@ -42,7 +42,7 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     @Column(nullable = false, unique = false, length = 20)
     private String statusCliente;
 
-
+    @Column(length = 10000)
     private String foto;
 
     @ManyToOne

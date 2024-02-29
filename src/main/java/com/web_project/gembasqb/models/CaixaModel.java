@@ -31,17 +31,21 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     private String dataFechado;
 
     @Column(nullable = true, unique = false, length = 10)
-    private float horario;
+    private String horario;
+
+    @Column(nullable = true, unique = false, length = 50)
+    private String descricao;
 
     public CaixaModel() {
     }
 
-    public CaixaModel(UUID caixaId, float saldo, String dataAbertura, String dataFechado, float horario) {
+    public CaixaModel(UUID caixaId, float saldo, String dataAbertura, String dataFechado, String horario, String descricao) {
         this.setCaixaId(caixaId);
         this.setSaldo(saldo);
         this.setDataAbertura(dataAbertura);
         this.setDataFechado(dataFechado);
         this.setHorario(horario);
+        this.setDescricao(descricao);
     }
 
     public UUID getCaixaId() {
@@ -76,19 +80,27 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
         this.dataFechado = dataFechado;
     }
 
-    public float getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(float horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 
     @Override
     public String toString() {
         return "CaixaModel [caixaId=" + caixaId + ", saldo=" + saldo + ", dataAbertura=" + dataAbertura
-                + ", dataFechado=" + dataFechado + ", horario=" + horario + "]";
+                + ", dataFechado=" + dataFechado + ", horario=" + horario + "descricao=" + descricao;
     }
-
     
 }
