@@ -1,7 +1,8 @@
     package com.web_project.gembasqb.models;
 
     import java.io.Serializable;
-    import java.util.UUID;
+import java.util.List;
+import java.util.UUID;
     import org.springframework.hateoas.RepresentationModel;
 
     import jakarta.persistence.Column;
@@ -9,7 +10,10 @@
     import jakarta.persistence.GeneratedValue;
     import jakarta.persistence.GenerationType;
     import jakarta.persistence.Id;
-    import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
     @Entity
     @Table(name = "Companys")
@@ -47,6 +51,16 @@
         @Column(nullable = true ,unique = false, length = 20)
         private String tamanhoEmpresa;
         
+        @OneToOne
+        @JoinColumn(name = "user_id")
+        private UserModel user;
+
+        @OneToMany(mappedBy = "company")
+        private List<ServicosModel> servicos;
+
+        @OneToMany(mappedBy = "company")
+        private List<ProdutosModel> produtos;
+
         public CompanyModel() {
         }
 
