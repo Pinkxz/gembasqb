@@ -1,5 +1,6 @@
 package com.web_project.gembasqb.repositories;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,7 @@ import com.web_project.gembasqb.models.UserModel;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, UUID>{
+
+    Optional<UserModel> findByEmail(String email);
     
 }
