@@ -46,7 +46,7 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     private String foto;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private UserModel user;
 
     public ClientesModel() {
