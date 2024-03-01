@@ -31,8 +31,8 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     @Column(nullable = false, unique = false, length = 20)
     private String status;
 
-    @Column(nullable = false, unique = false, length = 20)
-    private String total;
+    @Column(nullable = true, unique = false, length = 20)
+    private float total;
 
     @Column(nullable = false, unique = false, length = 20)
     private String dataInicio;
@@ -49,7 +49,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
 
-    public ComandaModel(String cliente, String servicos, String profissional, String status, String total) {
+    public ComandaModel(String cliente, String servicos, String profissional, String status, float total, String dataInicio) {
         this.setCliente(cliente);
         this.setServicos(servicos);
         this.setProfissional(profissional);
@@ -99,11 +99,11 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
         this.status = status;
     }
 
-    public String getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(float total) {
         this.total = total;
     }
     
