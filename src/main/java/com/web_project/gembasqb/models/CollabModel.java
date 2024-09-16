@@ -1,6 +1,7 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -30,7 +31,7 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     private String emailCollab;
 
     @Column(nullable = true, unique = false, length = 20)
-    private String dataCadastro;
+    private Date dataCadastro;
 
     @Column(nullable = true, unique = true)
     private double cpfcnpj;
@@ -56,7 +57,7 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     }
 
 
-    public CollabModel(String nomeCollab, String emailCollab, String dataCadastro, double cpfcnpj, double whatsapp,
+    public CollabModel(String nomeCollab, String emailCollab, Date dataCadastro, double cpfcnpj, double whatsapp,
             String statusCollab, String dataPagamento, String foto) {
         this.nomeCollab = nomeCollab;
         this.emailCollab = emailCollab;
@@ -98,12 +99,12 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     }
 
 
-    public String getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
 
-    public void setDataCadastro(String dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

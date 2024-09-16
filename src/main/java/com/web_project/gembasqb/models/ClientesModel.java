@@ -1,6 +1,7 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -31,10 +32,10 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     private String emailCliente;
 
     @Column(nullable = false, unique = false, length = 20)
-    private String dataCadastro;
+    private Date dataCadastro;
 
     @Column(nullable = true, unique = true)
-    private double cpfcnpj;
+    private String cpfcnpj;
 
     @Column(nullable = true, unique = true, length = 20)
     private double whatsapp;
@@ -53,7 +54,7 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     }
 
 
-    public ClientesModel(String nomeCliente, String emailCliente, String dataCadastro, double cpfcnpj, double whatsapp,
+    public ClientesModel(String nomeCliente, String emailCliente, Date dataCadastro, String cpfcnpj, double whatsapp,
             String statusCliente, String foto) {
         this.setNomeCliente(nomeCliente);
         this.setEmailCliente(emailCliente);
@@ -96,22 +97,22 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     }
 
 
-    public String getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
 
-    public void setDataCadastro(String dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
 
-    public double getCpfcnpj() {
+    public String getCpfcnpj() {
         return cpfcnpj;
     }
 
 
-    public void setCpfcnpj(double cpfcnpj) {
+    public void setCpfcnpj(String cpfcnpj) {
         this.cpfcnpj = cpfcnpj;
     }
 

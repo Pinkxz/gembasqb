@@ -1,6 +1,7 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -25,10 +26,10 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     private float saldo;
 
     @Column(nullable = false, unique = false, length = 12)
-    private String dataAbertura;
+    private Date dataAbertura;
 
     @Column(nullable = true, unique = false, length = 12)
-    private String dataFechado;
+    private Date dataFechado;
 
     @Column(nullable = true, unique = false, length = 10)
     private String horario;
@@ -39,7 +40,7 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     public CaixaModel() {
     }
 
-    public CaixaModel(UUID caixaId, float saldo, String dataAbertura, String dataFechado, String horario, String descricao) {
+    public CaixaModel(UUID caixaId, float saldo, Date dataAbertura, Date dataFechado, String horario, String descricao) {
         this.setCaixaId(caixaId);
         this.setSaldo(saldo);
         this.setDataAbertura(dataAbertura);
@@ -64,19 +65,19 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
         this.saldo = saldo;
     }
 
-    public String getDataAbertura() {
+    public Date getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(String dataAbertura) {
+    public void setDataAbertura(Date dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
-    public String getDataFechado() {
+    public Date getDataFechado() {
         return dataFechado;
     }
 
-    public void setDataFechado(String dataFechado) {
+    public void setDataFechado(Date dataFechado) {
         this.dataFechado = dataFechado;
     }
 

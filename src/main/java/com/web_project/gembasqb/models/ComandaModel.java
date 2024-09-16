@@ -1,6 +1,7 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -35,7 +36,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     private float total;
 
     @Column(nullable = false, unique = false, length = 20)
-    private String dataInicio;
+    private Date dataInicio;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,7 +50,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
 
-    public ComandaModel(String cliente, String servicos, String profissional, String status, float total, String dataInicio) {
+    public ComandaModel(String cliente, String servicos, String profissional, String status, float total, Date dataInicio) {
         this.setCliente(cliente);
         this.setServicos(servicos);
         this.setProfissional(profissional);
@@ -107,11 +108,11 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
         this.total = total;
     }
     
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
   
