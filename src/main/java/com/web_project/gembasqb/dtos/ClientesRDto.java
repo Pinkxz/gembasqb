@@ -1,8 +1,11 @@
 package com.web_project.gembasqb.dtos;
 
-import jakarta.validation.constraints.NotBlank;
+import java.sql.Date;
 
-public record ClientesRDto(@NotBlank String nomeCliente, @NotBlank String emailCliente, @NotBlank String dataCadastro, String cpfcnpj, 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record ClientesRDto(@NotBlank String nomeCliente, @NotBlank String emailCliente, @NotNull Date dataCadastro, String cpfcnpj, 
                 double whatsapp, @NotBlank String statusCliente, String foto) {
     
 } 

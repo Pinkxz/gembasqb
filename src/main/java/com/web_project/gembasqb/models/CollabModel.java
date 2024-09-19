@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "Colaboradores")
@@ -30,7 +32,8 @@ public class CollabModel  extends RepresentationModel<CollabModel> implements Se
     @Column(nullable = false, unique = true, length = 25)
     private String emailCollab;
 
-    @Column(nullable = true, unique = false, length = 20)
+    @Column(nullable = true, unique = false)
+    @Temporal(TemporalType.DATE)
     private Date dataCadastro;
 
     @Column(nullable = true, unique = true)

@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "Comandas")
@@ -35,7 +37,8 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     @Column(nullable = true, unique = false, length = 20)
     private float total;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = false)
+    @Temporal(TemporalType.DATE)
     private Date dataInicio;
     
     @Id

@@ -12,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -25,10 +27,12 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     @Column(nullable = false, unique = false, length = 15)
     private float saldo;
 
-    @Column(nullable = false, unique = false, length = 12)
+    @Column(nullable = false, unique = false)
+    @Temporal(TemporalType.DATE)
     private Date dataAbertura;
 
-    @Column(nullable = true, unique = false, length = 12)
+    @Column(nullable = true, unique = false) 
+    @Temporal(TemporalType.DATE)
     private Date dataFechado;
 
     @Column(nullable = true, unique = false, length = 10)

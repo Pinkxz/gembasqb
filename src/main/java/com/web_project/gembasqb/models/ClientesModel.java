@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -31,7 +33,8 @@ public class ClientesModel extends RepresentationModel<ClientesModel> implements
     @Column(nullable = false, unique = true, length = 25)
     private String emailCliente;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = false)
+    @Temporal(TemporalType.DATE)
     private Date dataCadastro;
 
     @Column(nullable = true, unique = true)
