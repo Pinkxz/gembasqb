@@ -42,28 +42,20 @@ public class UserController {
     }
 
 
-/* 
     @PostMapping("/users")
     public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRDto userRDto) {
-        var userModel = new UserModel();
+        // Cria uma nova instância do UserModel
+        UserModel userModel = new UserModel();
+        
+        // Copia os dados do UserRDto para o UserModel
         BeanUtils.copyProperties(userRDto, userModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userModel));
+
+        // Usa o método registerUser do UserServices para salvar o usuário com a senha criptografada
+        userServices.registerUser(userModel.getEmail(), userModel.getPassword(), userModel.getNumero(), userModel.getNome());
+
+        // Retorna uma resposta com status CREATED
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-*/
-@PostMapping("/users")
-public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRDto userRDto) {
-    // Cria uma nova instância do UserModel
-    UserModel userModel = new UserModel();
-    
-    // Copia os dados do UserRDto para o UserModel
-    BeanUtils.copyProperties(userRDto, userModel);
-
-    // Usa o método registerUser do UserServices para salvar o usuário com a senha criptografada
-    userServices.registerUser(userModel.getEmail(), userModel.getPassword(), userModel.getNumero(), userModel.getNome());
-
-    // Retorna uma resposta com status CREATED
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-}
 
 
 
