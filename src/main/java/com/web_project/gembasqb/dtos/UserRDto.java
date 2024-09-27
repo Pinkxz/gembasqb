@@ -13,7 +13,7 @@ public record UserRDto(
     String nome,
 
     @NotNull(message = "O número não pode ser nulo")
-    @Pattern(regexp = "^\\d{10,15}$", message = "O número deve conter entre 10 a 15 dígitos")
+    @Pattern(regexp = "^\\d{10,11}$", message = "O numero deve conter entre 10 a 11 digitos")
     @Pattern(regexp = "^[^\\.]+$", message = "O número não pode conter o caractere '.'")
     String numero,
 

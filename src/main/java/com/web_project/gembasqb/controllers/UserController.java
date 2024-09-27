@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import com.web_project.gembasqb.dtos.UserRDto;
 import com.web_project.gembasqb.models.UserModel;
 import com.web_project.gembasqb.repositories.UserRepository;
+import com.web_project.gembasqb.services.UserServices;
 
 import jakarta.validation.Valid;
 
@@ -30,12 +32,40 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+        @Autowired
+    UserServices userServices;
+
+    private final BCryptPasswordEncoder passwordEncoder; // Adicionando o BCryptPasswordEncoder
+    @Autowired
+    public UserController(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder; // Injetando o BCryptPasswordEncoder
+    }
+
+
+/* 
     @PostMapping("/users")
     public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRDto userRDto) {
         var userModel = new UserModel();
         BeanUtils.copyProperties(userRDto, userModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userModel));
     }
+*/
+@PostMapping("/users")
+public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRDto userRDto) {
+    // Cria uma nova instância do UserModel
+    UserModel userModel = new UserModel();
+    
+    // Copia os dados do UserRDto para o UserModel
+    BeanUtils.copyProperties(userRDto, userModel);
+
+    // Usa o método registerUser do UserServices para salvar o usuário com a senha criptografada
+    userServices.registerUser(userModel.getEmail(), userModel.getPassword(), userModel.getNumero(), userModel.getNome());
+
+    // Retorna uma resposta com status CREATED
+    return ResponseEntity.status(HttpStatus.CREATED).build();
+}
+
+
 
     @GetMapping("/users/")
     public ResponseEntity<List<UserModel>> getAllUsers() {
@@ -81,23 +111,23 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(userModel));
     }
 
-	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody UserModel userModel) {
-		String email = userModel.getEmail();
-		String password = userModel.getPassword();
-	
-		// Verificar no banco de dados se o usuário existe e se a senha está correta
-		Optional<UserModel> userOptional = userRepository.findByEmail(email);
-		if (userOptional.isPresent()) {
-			UserModel user = userOptional.get();
-			if (password.equals(user.getPassword())) {
-				// Login bem-sucedido
-				return ResponseEntity.ok("Login bem-sucedido!");
-			}
-		}
-	
-		// Se não encontrou o usuário ou a senha está incorreta
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
-	}
-
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserModel userModel) {
+        String email = userModel.getEmail();
+        String password = userModel.getPassword();
+        
+        // Verificar no banco de dados se o usuário existe e se a senha está correta
+        Optional<UserModel> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            UserModel user = userOptional.get();
+            if (passwordEncoder.matches(password, user.getPassword())) { // Usando matches para verificar a senha
+                // Login bem-sucedido
+                return ResponseEntity.ok("Login bem-sucedido!");
+            }
+        }
+        
+        // Se não encontrou o usuário ou a senha está incorreta
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
+    }
+    
 }

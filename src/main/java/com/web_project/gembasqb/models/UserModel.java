@@ -26,7 +26,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @Column(nullable = false, unique = true, length = 30)
     private String email;
 
-    @Column(nullable = false, unique = false, length = 20)
+    @Column(nullable = false, unique = false)
     private String password;
 
     @Column(nullable = false, unique = true, length = 11)
