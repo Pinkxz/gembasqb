@@ -36,7 +36,6 @@ public class UserController {
     UserServices userServices;
 
     private final BCryptPasswordEncoder passwordEncoder; // Adicionando o BCryptPasswordEncoder
-    @Autowired
     public UserController(BCryptPasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder; // Injetando o BCryptPasswordEncoder
     }
