@@ -1,0 +1,294 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff; /* Cor de fundo opcional */
+    font-family: 'Arial', sans-serif; /* Altere para a fonte desejada */
+}
+
+.center-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    height: 600px;
+    width: 90%; /* Ajuste a largura conforme necessário */
+    max-width: 800px; /* Defina uma largura máxima para manter o conteúdo legível */
+    padding: 10px;
+    background-color: #f2f2f2; /* Cor de fundo para destacar o conteúdo */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar o container */
+    font-family: 'Arial', sans-serif; /* Altere para a fonte desejada */
+}
+
+/* Estilos CSS para o contêiner do header e do contêiner com barra de rolagem */
+.container {
+    max-width: 700px; /* Largura máxima do contêiner */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    display: flex;
+    flex-direction: column;
+    max-height: 500px; /* Altura máxima do contêiner */
+    overflow: auto; /* Adiciona barra de rolagem vertical quando necessário */
+}
+
+
+/* Estilos para o cabeçalho */
+header {
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s;
+    border-bottom: 5px solid #9810f3; /* Adicionando borda inferior ao cabeçalho */
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .navbar li {
+    margin-right: 20px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar a:hover {
+    color: #9810f3;
+  }
+
+.logo img {
+    width: 80px;
+    height: 50px;
+    margin-left: 50px;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.notification {
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-block; /* Alteração para inline-block */
+    margin-right: 10px; /* Adição de margem para separação */
+}
+
+.profile-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px); /* Posiciona o popup abaixo do avatar */
+    right: 10px; /* Alinha o popup à direita */
+    background-color: #fff; /* Fundo branco */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona sombra */
+}
+
+.profile-options a {
+    display: block;
+    color: #333; /* Cor do texto */
+    text-decoration: none;
+    padding: 8px 0; /* Adiciona preenchimento aos links */
+}
+
+.profile-options a:hover {
+    background-color: #f0f0f0; /* Cor de fundo no hover */
+    border-radius: 3px; /* Arredonda os cantos no hover */
+}
+
+.dashboard-section {
+    box-shadow: 0 0 10px rgba(207, 0, 248, 0.973);
+    border: 2px solid #9810f3;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center; /* Centraliza os elementos */
+   /* margin-right: 20px; /* Adiciona espaço à direita */
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Adiciona margem superior entre os cards e o título */
+}
+
+.dashboard-card {
+    flex: 1;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    transition: box-shadow 0.3s, transform 0.3s; /* Adiciona uma transição suave para a sombra e escala */
+}
+
+.dashboard-card a {
+    text-decoration: none;
+    color: #9810f3;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra mais intensa no hover */
+    transform: scale(1.09); /* Aumenta a escala do card no hover */
+    cursor: pointer;
+}
+
+/* Estilos CSS para o header */
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000; 
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.header span {
+    font-weight: bold;
+}
+
+/* Estilos CSS para os itens */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+}
+
+.item span {
+    font-weight: bold;
+}
+
+.item .delete-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos CSS para a modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Definindo a largura do modal */
+    max-width: 600px; /* Largura máxima do modal */
+    max-height: 80%; /* Altura máxima do modal */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0); /* Fundo do conteúdo do modal */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 1s ease; /* Adicionando transição de opacidade */
+}
+
+.close {
+    color: #ff0000;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 24px;
+    transition: color 0.3s ease; /* Adicionando transição de cor */
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Estilos adicionais para o modal de acordo com o estilo fornecido */
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(207, 0, 248, 0.973);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: auto;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilos adicionais para os inputs dentro de .form-group */
+.form-group input,
+.form-group select {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.5s;
+}
+
+.form-group input:focus,
+.form-group input:hover,
+.form-group select:focus,
+.form-group select:hover {
+    border-color: purple;
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+
+.form-group button {
+    background-color: #9810f3;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #7a0cc9;
+}

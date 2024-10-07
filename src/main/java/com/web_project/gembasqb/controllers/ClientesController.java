@@ -1,5 +1,6 @@
 package com.web_project.gembasqb.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -8,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -17,7 +19,9 @@ import com.web_project.gembasqb.dtos.ClientesRDto;
 import com.web_project.gembasqb.models.ClientesModel;
 import com.web_project.gembasqb.repositories.ClientesRepository;
 
+import org.springframework.ui.Model;
 import jakarta.validation.Valid;
+
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +31,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@RestController
+@Controller
 public class ClientesController {
     
    @Autowired
@@ -71,7 +75,19 @@ public class ClientesController {
 		clientesRepository.delete(clienteO.get());
 		return ResponseEntity.status(HttpStatus.OK).body("Cliente deleted successfully.");
 	}
+ 	@GetMapping("/clientes/view")
+	public String viewClientes(Model model) {
+		List<ClientesModel> clientesList = clientesRepository.findAll();
+		
+		// Log para verificar o tamanho da lista
+		System.out.println("Tamanho da lista de clientes: " + clientesList.size());
+		
+		model.addAttribute("clientes", clientesList); 
+		return "clientes";
+	}	
 	
+
+
 	@PutMapping("/clientes/{id}")
 	public ResponseEntity<Object> updateCliente(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid ClientesRDto clientesRDto) {
