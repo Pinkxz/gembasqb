@@ -1,10 +1,14 @@
 package com.web_project.gembasqb.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,14 +21,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Users")
-public class UserModel extends RepresentationModel<UserModel> implements Serializable {
+public class UserModel extends RepresentationModel<UserModel> implements UserDetails {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUser;
 
     @Column(nullable = false, unique = true, length = 30)
-    private String email;
+    private String login;
 
     @Column(nullable = false, unique = false)
     private String password;
@@ -34,6 +38,9 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     @Column(nullable = false, unique = false, length = 30)
     private String nome;
+
+    @Column(nullable = false, unique = true, length = 5)
+    private UserRole role;
 
     @OneToOne(mappedBy = "user")
     private CompanyModel company;
@@ -53,17 +60,20 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @OneToMany(mappedBy = "user")
     private List<ComandaModel> comandas;
     
-    public UserModel(String email, String password, double numero, String nome) {
+    public UserModel(String login, String password, double numero, String nome, UserRole role) {
         
-        this.setEmail(email);
+        this.setLogin(login);
         this.setPassword(password);
         this.setNumero(numero);
         this.setNome(nome);
+        this.setRole(role);
     }
 
     public UserModel() { 
         
     }
+
+
 
     public UUID getIdUser() {
         return idUser;
@@ -73,12 +83,12 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.idUser = idUser;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -105,9 +115,55 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.nome = nome;
     }
 
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "UserModel email = " + email + ", password = " + password + ", whatsapp = " + numero + ", nome = " + nome;
+        return "UserModel login = " + login + ", password = " + password + ", whatsapp = " + numero + ", nome = " + nome;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonExpired'");
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonLocked'");
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isCredentialsNonExpired'");
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
     }
 
  

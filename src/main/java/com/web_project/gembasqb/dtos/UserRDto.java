@@ -1,5 +1,7 @@
 package com.web_project.gembasqb.dtos;
 
+import com.web_project.gembasqb.models.UserRole;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,13 +21,15 @@ public record UserRDto(
 
     @NotBlank(message = "O e-mail não pode estar em branco")
     @Email(message = "Formato de e-mail inválido")
-    String email,  // Sem restrição do caractere '.'
+    String login,  // Sem restrição do caractere '.'
 
     @NotBlank(message = "A senha não pode estar em branco")
     @Size(min = 8, message = "A senha deve conter no mínimo 8 caracteres")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d).*$", message = "A senha deve conter pelo menos 1 letra maiúscula e 1 número")
     @Pattern(regexp = "^[^\\.]+$", message = "A senha não pode conter o caractere '.'")
-    String password
+    String password,
+
+    UserRole role
 ) {
 
 }
