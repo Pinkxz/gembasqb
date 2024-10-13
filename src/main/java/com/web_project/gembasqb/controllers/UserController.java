@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -56,7 +57,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/users/")
+    @GetMapping("getAll/users/")
     public ResponseEntity<List<UserModel>> getAllUsers() {
         List<UserModel> userList = userRepository.findAll();
         if (!userList.isEmpty()) {
@@ -68,7 +69,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userList);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("getOne/users/{id}")
     public ResponseEntity<Object> getOneUser(@PathVariable(value = "id") UUID id) {
         Optional<UserModel> userO = userRepository.findById(id);
         if (userO.isEmpty()) {
@@ -78,7 +79,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userO.get());
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("del/users/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") UUID id) {
         Optional<UserModel> userO = userRepository.findById(id);
         if (userO.isEmpty()) {
@@ -88,7 +89,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully.");
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("upd/users/{id}")
     public ResponseEntity<Object> updateUser(@PathVariable(value = "id") UUID id,
             @RequestBody @Valid UserRDto userRDto) {
         Optional<UserModel> user0 = userRepository.findById(id);
@@ -102,7 +103,7 @@ public class UserController {
 
     
     @PostMapping("/auth/register")
-    public ResponseEntity register(@RequestBody @Valid UserRDto data){
+    public ResponseEntity<?> register(@RequestBody @Valid UserRDto data){
         if(this.userRepository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
@@ -113,8 +114,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-        @PostMapping("/auth/login")
-        public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data){
             var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
             var auth = this.authenticationManager.authenticate(usernamePassword);
 

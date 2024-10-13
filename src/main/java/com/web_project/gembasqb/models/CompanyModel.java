@@ -14,8 +14,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 
     @Entity
     @Table(name = "Companys")
@@ -42,8 +40,6 @@ import jakarta.validation.constraints.Min;
         private String bairro;
 
         @Column(nullable = false, unique = false)
-        @Min(1)
-        @Max(10)
         private int numeroEnd;
 
         @Column(nullable = false, unique = false, length = 20)

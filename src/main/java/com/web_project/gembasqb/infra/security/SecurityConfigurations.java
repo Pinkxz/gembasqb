@@ -37,9 +37,11 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                 .requestMatchers(HttpMethod.POST, "/colaboradores").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/companys").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
