@@ -1,5 +1,8 @@
 package com.web_project.gembasqb.services;
 
+
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -48,5 +51,7 @@ public class UserServices implements UserDetailsService {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userRepository.findByLogin(login);
     }
+
+    
 }
 

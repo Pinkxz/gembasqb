@@ -162,6 +162,13 @@ import jakarta.persistence.Table;
             this.tamanhoEmpresa = tamanhoEmpresa;
         }
 
+        public UserModel getUser() {
+            return user;
+        }
+    
+        public void setUser(UserModel user) {
+            this.user = user; // Aqui você define o setter
+        }
 
         @Override
         public String toString() {

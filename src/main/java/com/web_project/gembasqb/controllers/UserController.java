@@ -103,7 +103,7 @@ public class UserController {
 
     
     @PostMapping("/auth/register")
-    public ResponseEntity<?> register(@RequestBody @Valid UserRDto data){
+    public ResponseEntity register(@RequestBody @Valid UserRDto data){
         if(this.userRepository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
@@ -115,12 +115,15 @@ public class UserController {
     }
 
         @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data){
-            var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
+        public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+            System.out.println("Login Attempt: " + data.login());
+            System.out.println("Login Attempt: " + data.password());
+            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
             var auth = this.authenticationManager.authenticate(usernamePassword);
 
             var token = tokenService.generateToken((UserModel) auth.getPrincipal());
 
+            System.out.println("Login Attempt: " + token);
             return ResponseEntity.ok(new LoginResponseDTO(token));
         }
 

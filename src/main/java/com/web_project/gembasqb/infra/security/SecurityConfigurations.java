@@ -39,9 +39,35 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/users").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/users").denyAll()
+                
                 .requestMatchers(HttpMethod.POST, "/colaboradores").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/colaboradores").permitAll()
+                .requestMatchers(HttpMethod.GET, "/colaboradores").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/colaboradores").hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.POST, "/clientes").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/clientes").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/clientes").permitAll()
+                .requestMatchers(HttpMethod.GET, "/clientes").permitAll()
+
                 .requestMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/produtos").permitAll()
+                .requestMatchers(HttpMethod.GET, "/produtos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/produtos").hasRole("ADMIN")
+
+
                 .requestMatchers(HttpMethod.POST, "/companys").permitAll()
+                .requestMatchers(HttpMethod.GET, "/companys").denyAll()
+                .requestMatchers(HttpMethod.DELETE, "/companys").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/companys").hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.POST, "/servicos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/servicos").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/servicos").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/servicos").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

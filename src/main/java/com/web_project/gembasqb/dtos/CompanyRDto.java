@@ -1,5 +1,7 @@
 package com.web_project.gembasqb.dtos;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -38,7 +40,13 @@ public record CompanyRDto(
     int numeroEnd,
 
     @NotBlank(message = "O tamanho da empresa não pode estar em branco")
-    String tamanhoEmpresa
-) {
+    String tamanhoEmpresa,
 
+    UUID userId // Adicionando o campo para a UUID do usuário
+) {
+    // Método que retorna o userId
+    public UUID getUserId() {
+        return userId;
+    }
 }
+

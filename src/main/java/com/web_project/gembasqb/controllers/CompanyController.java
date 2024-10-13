@@ -39,7 +39,6 @@ public class CompanyController {
       BeanUtils.copyProperties(companyRDto, companyModel);
        return ResponseEntity.status(HttpStatus.CREATED).body(companyRepository.save(companyModel));
    }
-
    @GetMapping("/companys/")
 	public ResponseEntity<List<CompanyModel>> getAllCompanys(){
 		List<CompanyModel> companyList = companyRepository.findAll();

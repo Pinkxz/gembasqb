@@ -1,6 +1,5 @@
 package com.web_project.gembasqb.models;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +38,7 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     @Column(nullable = false, unique = false, length = 30)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 5)
+    @Column(nullable = false, unique = false, length = 5)
     private UserRole role;
 
     @OneToOne(mappedBy = "user")
@@ -138,32 +137,31 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
 
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
+        
         return login;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonExpired'");
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonLocked'");
+        
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isCredentialsNonExpired'");
+        
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
+        
+        return true;
     }
 
  
