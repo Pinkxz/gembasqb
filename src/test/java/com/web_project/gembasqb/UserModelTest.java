@@ -1,4 +1,4 @@
-package com.web_project;
+package com.web_project.gembasqb;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +55,7 @@ class UserModelTest {
 
             @Test
             public void testUserModelGetAuthorities() {
-                UserModel user = new UserModel("email@g", "senaha", 1234567890, "mateus", UserRole);
+                UserModel user = new UserModel("email@g", "senaha", Double.parseDouble("21987654321" ), "mateus", UserRole);
                 Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
                 assertNotNull(authorities);
                 
