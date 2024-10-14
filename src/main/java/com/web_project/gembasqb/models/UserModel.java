@@ -70,7 +70,8 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
         this.setRole(role);
     }
 
-    public UserModel() { }
+    public UserModel(){}
+    
 
     public UUID getIdUser() {
         return idUser;
@@ -107,8 +108,8 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     }
 
     public void setNumero(double numero) {
-        if (String.valueOf(numero).length() != 11) {
-            throw new InvalidDataException("Número deve ter 11 dígitos.");
+        if (String.valueOf(numero).length() != 11 || String.valueOf(numero).length() != 10) {
+            throw new InvalidDataException("Número deve ter 1O ou 11 dígitos.");
         }
         this.numero = numero;
     }
