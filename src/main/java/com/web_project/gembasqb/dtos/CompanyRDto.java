@@ -44,9 +44,55 @@ public record CompanyRDto(
 
     UUID userId // Adicionando o campo para a UUID do usuário
 ) {
+
     // Método que retorna o userId
     public UUID getUserId() {
         return userId;
+    }
+
+    public void setCompNome(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCompNome'");
+    }
+
+    public void setTipoNegocio(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTipoNegocio'");
+    }
+
+    public void setCep(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCep'");
+    }
+
+    public void setRua(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setRua'");
+    }
+
+    public void setBairro(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setBairro'");
+    }
+
+    public void setNumeroEnd(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setNumeroEnd'");
+    }
+
+    public void setCidade(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCidade'");
+    }
+
+    public void setEstado(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setEstado'");
+    }
+
+    public void setTamanhoEmpresa(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTamanhoEmpresa'");
     }
 }
 

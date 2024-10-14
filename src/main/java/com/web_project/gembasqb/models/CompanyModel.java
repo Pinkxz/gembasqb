@@ -205,5 +205,10 @@ public class CompanyModel extends RepresentationModel<CompanyModel> implements S
                 + ", estado=" + estado + "]";
     }
 
+    public void setIdCompanyUuid(UUID id2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setIdCompanyUuid'");
+    }
+
 }
 

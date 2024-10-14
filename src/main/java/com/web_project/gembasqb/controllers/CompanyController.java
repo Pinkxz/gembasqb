@@ -72,7 +72,7 @@ public class CompanyController {
 	}
 	
 	@PutMapping("/companys/{id}")
-	public ResponseEntity<Object> updateComapany(@PathVariable(value="id") UUID id,
+	public ResponseEntity<Object> updateCompany(@PathVariable(value="id") UUID id,
 													  @RequestBody @Valid CompanyRDto companyRDto) {
 		Optional<CompanyModel> companyO = companyRepository.findById(id);
 		if(companyO.isEmpty()) {
