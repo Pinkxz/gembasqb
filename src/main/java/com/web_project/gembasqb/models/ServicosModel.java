@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.web_project.gembasqb.exceptions.InvalidDataException; // Exceção personalizada
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Servicos")
-public class ServicosModel  extends RepresentationModel<ServicosModel> implements Serializable {
+public class ServicosModel extends RepresentationModel<ServicosModel> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id 
@@ -49,7 +51,6 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
 
     @Column(nullable = true, unique = false, length = 20)
     private String fidelidade;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -91,12 +92,14 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
         this.idServico = idServico;
     }
 
-
     public String getNomeServico() {
         return nomeServico;
     }
 
     public void setNomeServico(String nomeServico) {
+        if (nomeServico == null || nomeServico.length() > 20) {
+            throw new InvalidDataException("Nome do serviço não pode ser nulo e deve ter no máximo 20 caracteres.");
+        }
         this.nomeServico = nomeServico;
     }
 
@@ -105,6 +108,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setCategoria(String categoria) {
+        if (categoria == null || categoria.length() > 20) {
+            throw new InvalidDataException("Categoria não pode ser nula e deve ter no máximo 20 caracteres.");
+        }
         this.categoria = categoria;
     }
 
@@ -113,6 +119,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setPreco(float preco) {
+        if (preco <= 0) {
+            throw new InvalidDataException("Preço deve ser maior que 0.");
+        }
         this.preco = preco;
     }
 
@@ -121,6 +130,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setTempo(float tempo) {
+        if (tempo <= 0) {
+            throw new InvalidDataException("Tempo deve ser maior que 0.");
+        }
         this.tempo = tempo;
     }
 
@@ -129,15 +141,20 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setStatus(String status) {
+        if (status == null || status.length() > 20) {
+            throw new InvalidDataException("Status não pode ser nulo e deve ter no máximo 20 caracteres.");
+        }
         this.status = status;
     }
 
-    
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null || descricao.length() > 20) {
+            throw new InvalidDataException("Descrição não pode ser nula e deve ter no máximo 20 caracteres.");
+        }
         this.descricao = descricao;
     }
 
@@ -146,6 +163,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setImagem(String imagem) {
+        if (imagem == null || imagem.length() > 20) {
+            throw new InvalidDataException("Imagem não pode ser nula e deve ter no máximo 20 caracteres.");
+        }
         this.imagem = imagem;
     }
 
@@ -154,6 +174,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setComissao(int comissao) {
+        if (comissao < 0 || comissao > 100) {
+            throw new InvalidDataException("Comissão deve estar entre 0 e 100.");
+        }
         this.comissao = comissao;
     }
 
@@ -162,6 +185,9 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
     }
 
     public void setFidelidade(String fidelidade) {
+        if (fidelidade != null && fidelidade.length() > 20) {
+            throw new InvalidDataException("Fidelidade deve ter no máximo 20 caracteres.");
+        }
         this.fidelidade = fidelidade;
     }
 
@@ -171,5 +197,4 @@ public class ServicosModel  extends RepresentationModel<ServicosModel> implement
                 + ", tempo=" + tempo + ", status=" + status + "]";
     }
 
-    
 }

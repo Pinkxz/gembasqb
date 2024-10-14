@@ -15,11 +15,10 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-
 @Entity
 @Table(name = "Caixa")
-public class CaixaModel extends RepresentationModel<CaixaModel> implements Serializable{
-    
+public class CaixaModel extends RepresentationModel<CaixaModel> implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID caixaId;
@@ -31,7 +30,7 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     @Temporal(TemporalType.DATE)
     private Date dataAbertura;
 
-    @Column(nullable = true, unique = false) 
+    @Column(nullable = true, unique = false)
     @Temporal(TemporalType.DATE)
     private Date dataFechado;
 
@@ -58,6 +57,9 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setCaixaId(UUID caixaId) {
+        if (caixaId == null) {
+            throw new IllegalArgumentException("O ID do caixa não pode ser nulo.");
+        }
         this.caixaId = caixaId;
     }
 
@@ -66,6 +68,9 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setSaldo(float saldo) {
+        if (saldo < 0) {
+            throw new IllegalArgumentException("O saldo não pode ser negativo.");
+        }
         this.saldo = saldo;
     }
 
@@ -74,6 +79,9 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setDataAbertura(Date dataAbertura) {
+        if (dataAbertura == null) {
+            throw new IllegalArgumentException("A data de abertura não pode ser nula.");
+        }
         this.dataAbertura = dataAbertura;
     }
 
@@ -82,6 +90,9 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setDataFechado(Date dataFechado) {
+        if (dataFechado != null && dataFechado.before(dataAbertura)) {
+            throw new IllegalArgumentException("A data de fechamento não pode ser anterior à data de abertura.");
+        }
         this.dataFechado = dataFechado;
     }
 
@@ -90,6 +101,9 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setHorario(String horario) {
+        if (horario != null && horario.length() > 10) {
+            throw new IllegalArgumentException("O horário não pode exceder 10 caracteres.");
+        }
         this.horario = horario;
     }
 
@@ -98,14 +112,15 @@ public class CaixaModel extends RepresentationModel<CaixaModel> implements Seria
     }
 
     public void setDescricao(String descricao) {
+        if (descricao != null && descricao.length() > 50) {
+            throw new IllegalArgumentException("A descrição não pode exceder 50 caracteres.");
+        }
         this.descricao = descricao;
     }
-
 
     @Override
     public String toString() {
         return "CaixaModel [caixaId=" + caixaId + ", saldo=" + saldo + ", dataAbertura=" + dataAbertura
-                + ", dataFechado=" + dataFechado + ", horario=" + horario + "descricao=" + descricao;
+                + ", dataFechado=" + dataFechado + ", horario=" + horario + ", descricao=" + descricao + "]";
     }
-    
 }

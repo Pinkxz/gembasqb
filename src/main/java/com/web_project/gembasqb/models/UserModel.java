@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.web_project.gembasqb.exceptions.InvalidDataException; // Exceção personalizada
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ import jakarta.persistence.Table;
 @Table(name = "Users")
 public class UserModel extends RepresentationModel<UserModel> implements UserDetails {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUser;
@@ -58,9 +61,8 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
 
     @OneToMany(mappedBy = "user")
     private List<ComandaModel> comandas;
-    
+
     public UserModel(String login, String password, double numero, String nome, UserRole role) {
-        
         this.setLogin(login);
         this.setPassword(password);
         this.setNumero(numero);
@@ -68,11 +70,7 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
         this.setRole(role);
     }
 
-    public UserModel() { 
-        
-    }
-
-
+    public UserModel() { }
 
     public UUID getIdUser() {
         return idUser;
@@ -87,6 +85,9 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     }
 
     public void setLogin(String login) {
+        if (login == null || login.length() > 30) {
+            throw new InvalidDataException("Login não pode ser nulo e deve ter no máximo 30 caracteres.");
+        }
         this.login = login;
     }
 
@@ -95,6 +96,9 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     }
 
     public void setPassword(String password) {
+        if (password == null || password.length() < 6) {
+            throw new InvalidDataException("Senha não pode ser nula e deve ter no mínimo 6 caracteres.");
+        }
         this.password = password;
     }
 
@@ -103,6 +107,9 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     }
 
     public void setNumero(double numero) {
+        if (String.valueOf(numero).length() != 11) {
+            throw new InvalidDataException("Número deve ter 11 dígitos.");
+        }
         this.numero = numero;
     }
 
@@ -111,33 +118,38 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.length() > 30) {
+            throw new InvalidDataException("Nome não pode ser nulo e deve ter no máximo 30 caracteres.");
+        }
         this.nome = nome;
     }
-
 
     public UserRole getRole() {
         return role;
     }
 
     public void setRole(UserRole role) {
+        if (role == null) {
+            throw new InvalidDataException("Role não pode ser nulo.");
+        }
         this.role = role;
     }
 
     @Override
     public String toString() {
-        return "UserModel login = " + login + ", password = " + password + ", whatsapp = " + numero + ", nome = " + nome;
+        return "UserModel [login=" + login + ", password=" + password + ", whatsapp=" + numero + ", nome=" + nome + "]";
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == UserRole.ADMIN)
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
-
 
     @Override
     public String getUsername() {
-        
         return login;
     }
 
@@ -148,22 +160,16 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
 
     @Override
     public boolean isAccountNonLocked() {
-        
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        
         return true;
     }
-
- 
-    
 }

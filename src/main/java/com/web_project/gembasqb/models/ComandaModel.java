@@ -27,7 +27,7 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
 
     @Column(nullable = false, unique = false, length = 100)
     private String servicos;
-    
+
     @Column(nullable = false, unique = false, length = 30)
     private String profissional;
 
@@ -40,18 +40,17 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     @Column(nullable = false, unique = false)
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idComanda;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
 
     public ComandaModel() {
     }
-
 
     public ComandaModel(String cliente, String servicos, String profissional, String status, float total, Date dataInicio) {
         this.setCliente(cliente);
@@ -66,7 +65,6 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
         return idComanda;
     }
 
-
     public void setIdComanda(UUID idComanda) {
         this.idComanda = idComanda;
     }
@@ -76,6 +74,12 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
     public void setCliente(String cliente) {
+        if (cliente == null || cliente.isEmpty()) {
+            throw new IllegalArgumentException("O nome do cliente não pode ser nulo ou vazio.");
+        }
+        if (cliente.length() > 30) {
+            throw new IllegalArgumentException("O nome do cliente não pode exceder 30 caracteres.");
+        }
         this.cliente = cliente;
     }
 
@@ -84,6 +88,12 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
     public void setServicos(String servicos) {
+        if (servicos == null || servicos.isEmpty()) {
+            throw new IllegalArgumentException("Os serviços não podem ser nulos ou vazios.");
+        }
+        if (servicos.length() > 100) {
+            throw new IllegalArgumentException("A descrição dos serviços não pode exceder 100 caracteres.");
+        }
         this.servicos = servicos;
     }
 
@@ -92,6 +102,12 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
     public void setProfissional(String profissional) {
+        if (profissional == null || profissional.isEmpty()) {
+            throw new IllegalArgumentException("O nome do profissional não pode ser nulo ou vazio.");
+        }
+        if (profissional.length() > 30) {
+            throw new IllegalArgumentException("O nome do profissional não pode exceder 30 caracteres.");
+        }
         this.profissional = profissional;
     }
 
@@ -100,6 +116,12 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
     public void setStatus(String status) {
+        if (status == null || status.isEmpty()) {
+            throw new IllegalArgumentException("O status da comanda não pode ser nulo ou vazio.");
+        }
+        if (status.length() > 20) {
+            throw new IllegalArgumentException("O status da comanda não pode exceder 20 caracteres.");
+        }
         this.status = status;
     }
 
@@ -108,27 +130,27 @@ public class ComandaModel extends RepresentationModel<ComandaModel> implements S
     }
 
     public void setTotal(float total) {
+        if (total < 0) {
+            throw new IllegalArgumentException("O valor total não pode ser negativo.");
+        }
         this.total = total;
     }
-    
+
     public Date getDataInicio() {
         return dataInicio;
     }
 
     public void setDataInicio(Date dataInicio) {
+        if (dataInicio == null) {
+            throw new IllegalArgumentException("A data de início não pode ser nula.");
+        }
         this.dataInicio = dataInicio;
     }
-  
-
 
     @Override
     public String toString() {
-        return "ComandaModel " + ", cliente=" + cliente + ", servicos=" + servicos + ", profissional="
-                + profissional + ", status=" + status + ", total=" + total + "dataInicio" + dataInicio;
+        return "ComandaModel [cliente=" + cliente + ", servicos=" + servicos + ", profissional=" + profissional
+                + ", status=" + status + ", total=" + total + ", dataInicio=" + dataInicio + "]";
     }
 
-
- 
-
 }
-
