@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    image: seu_usuario/seu_app:latest # Altere para o nome da sua imagem
+    build:
+      context: .
+      dockerfile: Dockerfile # Caminho para seu Dockerfile
+    ports:
+      - "8081:8080" # Mapeia a porta 8080 do contêiner para a porta 8081 da máquina host
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/GembaSQB # Mude localhost para db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1646
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: GembaSQB # Apenas o nome do banco de dados
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1646
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
